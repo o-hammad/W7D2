@@ -16,13 +16,13 @@ class UsersController < ApplicationController
             login(@user)
             redirect_to users_url
         else
-            flash.now[:errors] = @user.error.messages_full
+            flash.now[:errors] = @user.errors.full_messages
             render :new, status: 422
         end
     end
 
     private
     def user_params
-        params.require(:users).permit(:email, :password)
+        params.require(:user).permit(:email, :password)
     end
 end
