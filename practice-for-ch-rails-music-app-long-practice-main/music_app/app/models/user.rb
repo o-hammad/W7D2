@@ -12,10 +12,11 @@
 class User < ApplicationRecord
     before_validation :ensure_session_token
     
-    validates :email, :session_token, uniqueness: true, presence: true
+    validates :email, uniqueness: true, presence: true
+    validates :session_token, uniqueness: true, presence: true
     validates :password_digest, presence: true
     validates :password, length: {minimum: 6, allow_nil: true}
-
+    
     attr_reader :password
 
     def password=(password)
